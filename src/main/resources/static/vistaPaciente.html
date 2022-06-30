@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica odontológica</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="titulo">Clínica odontológica</h1>
+    </div>
+</header>
+<main>
+    <section class="container">
+        <h2>Listado de pacientes</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>E-mail</th>
+            </tr>
+            </thead>
+            <tbody id="tabla-pacientes-body">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+<section class="container">
+    <h2 id="titulo-form">Agregar nuevo paciente</h2>
+    <ul id="mensajes-errores"></ul>
+    <form>
+        <div class="grupo">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre del paciente" class="campo">
+        </div>
+        <div class="grupo">
+            <label for="apellido">Apellido:</label>
+            <input id="apellido" name="apellido" type="text" placeholder="Ingrese el apellido del paciente" class="campo campo-medio">
+        </div>
+        <div class="grupo">
+            <label for="email">E-mail:</label>
+            <input id="email" name="email" type="text" placeholder="Ingrese el email del paciente" class="campo campo-medio">
+        </div>
+        <div class="grupo">
+            <label for="dni">DNI:</label>
+            <input id="dni" name="dni" type="text" placeholder="Ingrese el DNI del paciente" class="campo campo-medio">
+        </div>
+        <div class="grupo">
+            <label for="fecha">Fecha de ingreso:</label>
+            <input id="fecha" name="fecha" type="date" value="" class="campo campo-medio"/>
+        </div>
+
+        <button id="agregar-paciente" class="boton bto-principal">Agregar</button>
+        <div id="botones-edicion">
+            <button id="actualizar-paciente" class="boton invisible">Actualizar</button>
+            <button id="eliminar-paciente" class="boton invisible" style="background-color: red;">Eliminar</button>
+            <button id="cancelar" class="boton invisible" style="background-color: grey;">Cancelar</button>
+        </div>
+
+    </form>
+</section>
+<script src="./js/vistaPaciente.js"></script>
+</body>
+</html>

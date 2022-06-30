@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica odontológica</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1 class="titulo">Clínica odontológica</h1>
+    </div>
+</header>
+<main>
+    <section class="container">
+        <h2>Listado de odontólogos</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Matrícula</th>
+            </tr>
+            </thead>
+            <tbody id="tabla-odontologos-body">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+<section class="container">
+    <h2 id="titulo-form">Agregar nuevo odontólogo</h2>
+    <ul id="mensajes-errores"></ul>
+    <form>
+        <div class="grupo">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre del odontólogo" class="campo">
+        </div>
+        <div class="grupo">
+            <label for="apellido">Apellido:</label>
+            <input id="apellido" name="apellido" type="text" placeholder="Ingrese el apellido del odontólogo" class="campo campo-medio">
+        </div>
+        <div class="grupo">
+            <label for="matricula">Matrícula:</label>
+            <input id="matricula" name="matricula" type="text" placeholder="Ingrese la matrícula del odontólogo" class="campo campo-medio">
+        </div>
+        <button id="agregar-odontologo" class="boton bto-principal">Agregar</button>
+        <div id="botones-edicion">
+            <button id="actualizar-odontologo" class="boton invisible">Actualizar</button>
+            <button id="eliminar-odontologo" class="boton invisible" style="background-color: red;">Eliminar</button>
+            <button id="cancelar" class="boton invisible" style="background-color: grey;">Cancelar</button>
+        </div>
+
+    </form>
+</section>
+<script src="./js/vistaOdontologo.js"></script>
+</body>
+</html>
