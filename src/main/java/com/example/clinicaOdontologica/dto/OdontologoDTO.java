@@ -2,6 +2,9 @@ package com.example.clinicaOdontologica.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/* OdontologoDTO devuelve los mismos datos que el objeto Odontologo, pero se deja abierta la posibilidad de que no retorne
+ * datos nuevos en caso de que se agreguen nuevos atributos al objeto Odontologo. Con ignoreUnknown
+ * se le indica que ignore los atributos no mapeados desde el objeto Paciente.*/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OdontologoDTO {
     private Integer id;

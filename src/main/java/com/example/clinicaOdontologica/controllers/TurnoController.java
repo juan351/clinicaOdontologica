@@ -1,5 +1,7 @@
 package com.example.clinicaOdontologica.controllers;
 
+import com.example.clinicaOdontologica.dto.TurnoDTO;
+import com.example.clinicaOdontologica.models.Turno;
 import com.example.clinicaOdontologica.services.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,44 +9,50 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
+/* Indicamos a Spring que esta clase es un controlador */
+@RestController
+/* Agregamos el path /turnos antes de cada ruta */
+@RequestMapping("/turnos")
 public class TurnoController {
 
+    /* Utilizamos Autowired para inyectar ITurnoService en lugar de usar un constructor */
+    @Autowired
     public ITurnoService turnoService;
-    /*
-    @DeleteMapping(path = "/turnos/{id}")
-    public ResponseEntity eliminarTurno(@PathVariable int id){
-        turnoService.generarTurnos();
-        boolean resultado = turnoService.eliminar(id);
 
-        if (resultado != false) {
-            return new ResponseEntity(turnoService.mostrarTurnos(), null, HttpStatus.OK);
-        } else {
-            return new ResponseEntity("No se encontró el turno", null, HttpStatus.FORBIDDEN);
-        }
+    /* Ruta: /turnos/todos. Solicita el listado completo de turnos. */
+    @GetMapping("/todos")
+    public List<TurnoDTO> listarTurnos(){
+        return turnoService.listarTurnos();
     }
 
-    @GetMapping(path = "/turnos/{id}")
-    public ResponseEntity  buscar(@PathVariable int id){
-        turnoService.generarTurnos();
-        Turno turno = turnoService.buscar(id);
-        if (turno != null) {
-            return new ResponseEntity<Turno>(turno, null, HttpStatus.OK);
-        } else {
-            return new ResponseEntity("No se encontró el turno", null, HttpStatus.FORBIDDEN);
-        }
+    /* Ruta: /turnos/{id}. Recibe la variable id en el path y la pasa al service para que
+     * busque el turno correspondiente en la base de datos. */
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<?> buscar(@PathVariable int id){
+
+        return turnoService.buscarTurnoPorId(id);
 
     }
 
-    @PutMapping(path = "/turnos")
-    public ResponseEntity modificar(@RequestBody Turno turno) {
-        turnoService.generarTurnos();
-        Turno t = turnoService.modificar(turno);
+    /* Ruta: /turnos/{id}. Recibe la variable id en el path y solicita al service que elimine
+     * el turno de id correspondiente en la base de datos. */
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> eliminarTurno(@PathVariable int id){
+        return turnoService.eliminarTurnoPorId(id);
+    }
 
-        if (t != null) {
-            return new ResponseEntity<Turno>(t, null, HttpStatus.OK);
-        } else {
-            return new ResponseEntity("No se encontró el turno", null, HttpStatus.FORBIDDEN);
-        }
-    }*/
+    /* Ruta: /turnos/agregar. Usamos esta ruta para enviar solicitudes POST con un objeto Turno
+     * en el body. El controlador solicita al service que lo guarde en la base de datos. */
+    @PostMapping(path = "/agregar")
+    public Turno agregar(@RequestBody Turno turno) {
+        return turnoService.actualizarTurno(turno);
+    }
+
+    /* Ruta: /turnos/actualizar. Usamos esta ruta para solicitar la actualización de un objeto Turno. */
+    @PutMapping(path = "/actualizar")
+    public Turno actualizar(@RequestBody Turno turno) {
+        return turnoService.actualizarTurno(turno);
+    }
 }

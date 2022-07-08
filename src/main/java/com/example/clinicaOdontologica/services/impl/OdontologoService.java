@@ -7,6 +7,8 @@ import com.example.clinicaOdontologica.repositories.IOdontologoRepository;
 import com.example.clinicaOdontologica.services.IOdontologoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -32,9 +34,14 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public OdontologoDTO buscarPorId(Integer id) {
+    public ResponseEntity<?> buscarPorId(Integer id) {
         OdontologoDTO odontologoEncontrado = mapper.convertValue(odontologoRepository.findById(id).get(), OdontologoDTO.class);
-        return odontologoEncontrado;
+        if (odontologoEncontrado !=null){
+            return new ResponseEntity<OdontologoDTO>(odontologoEncontrado, HttpStatus.OK);
+        }else{
+            return new ResponseEntity("No se encontró el odontólogo solicitado", HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @Override
@@ -43,12 +50,12 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public String eliminarPorId(Integer id) {
+    public ResponseEntity<?> eliminarPorId(Integer id) {
         if(odontologoRepository.findById(id).isPresent()) {
             odontologoRepository.deleteById(id);
-            return "El odontólogo con id " + id + " ha sido eliminado.";
+            return new ResponseEntity("El odontólogo con id " + id + " ha sido eliminado.", HttpStatus.OK);
         }
-        return "El odontólogo con id " + id + " no existe.";
+        return new ResponseEntity("El odontólogo con id " + id + " no existe.", HttpStatus.NOT_FOUND);
     }
 
     @Override

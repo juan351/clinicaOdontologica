@@ -5,13 +5,17 @@ import com.example.clinicaOdontologica.models.Turno;
 import com.example.clinicaOdontologica.repositories.ITurnoRepository;
 import com.example.clinicaOdontologica.services.ITurnoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 import java.util.List;
 
-
+@Service
 public class TurnoService implements ITurnoService {
 
     @Autowired
@@ -29,6 +33,7 @@ public class TurnoService implements ITurnoService {
     public List<TurnoDTO> listarTurnos() {
         List<TurnoDTO> listaTurnosDto = new ArrayList<>();
         List<Turno> listaTurnos = turnoRepository.findAll();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         for (Turno turno : listaTurnos) {
             listaTurnosDto.add(mapper.convertValue(turno, TurnoDTO.class));
         }
@@ -36,22 +41,29 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoDTO buscarTurnoPorId(Integer id) {
+    public ResponseEntity<?> buscarTurnoPorId(Integer id) {
         TurnoDTO turnoEncontrado = mapper.convertValue(turnoRepository.findById(id).get(), TurnoDTO.class);
-        return turnoEncontrado;
+        if (turnoEncontrado != null){
+            return new ResponseEntity<TurnoDTO>(turnoEncontrado, HttpStatus.OK);
+        }else{
+            return new ResponseEntity("No se ha encontrado ningún turno", HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @Override
-    public String eliminarTurnoPorId(Integer id) {
+    public ResponseEntity<?> eliminarTurnoPorId(Integer id) {
         if(turnoRepository.findById(id).isPresent()) {
             turnoRepository.deleteById(id);
-            return "El turno con id " + id + " ha sido eliminado.";
+            return new ResponseEntity("El turno ha sido eliminado", HttpStatus.OK);
+        } else {
+            return new ResponseEntity("El turno no se encuentra registrado.", HttpStatus.NOT_FOUND);
         }
-        return "El turno solicitado no se encuentra registrado.";
+
     }
 
     @Override
     public Turno actualizarTurno(Turno turno) {
-        return turnoRepository.saveAndFlush(turno);
+        return turnoRepository.save(turno);
     }
 }

@@ -2,6 +2,8 @@ package com.example.clinicaOdontologica.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/* PacienteDTO devuelve una versión reducida de los datos del paciente, excluyendo DNI y domicilio. Con ignoreUnknown
+* se le indica que ignore los atributos no mapeados desde el objeto Paciente.*/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
 
@@ -11,15 +13,18 @@ public class PacienteDTO {
 
     private String email;
 
+    private DomicilioDTO domicilio;
+
 
     public PacienteDTO() {
     }
 
-    public PacienteDTO(Integer id, String apellido, String nombre, String email) {
+    public PacienteDTO(Integer id, String apellido, String nombre, String email, DomicilioDTO domicilio) {
         this.id = id;
         this.apellido = apellido;
         this.nombre = nombre;
         this.email = email;
+        this.domicilio = domicilio;
 
     }
 
@@ -49,5 +54,13 @@ public class PacienteDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public DomicilioDTO getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(DomicilioDTO domicilio) {
+        this.domicilio = domicilio;
     }
 }

@@ -2,6 +2,9 @@ package com.example.clinicaOdontologica.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/* DomicilioDTO devuelve unicamente localidad y provincia de cada paciente. El mapeo con la clase Domicilio se
+* produce desde el servicio de Paciente, junto con el mapeo de Paciente a PacienteDTO. El ignoreUnknown solicita
+* que se ignoren los atributos no mapeados desde Domiclio. */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DomicilioDTO {
 

@@ -2,17 +2,21 @@ package com.example.clinicaOdontologica.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.LocalDateTime;
+
+/* TurnoDTO devuelve un objeto con una instancia de OdontologoDTO y de PacienteDTO, junto con la fecha y hora
+* del turno reservado. Con ignoreUnknown se indica que ignore los atributos no mapeados desde el objeto Turno.*/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDTO {
 
     private OdontologoDTO odontologo;
     private PacienteDTO paciente;
-    private String fechaHora;
+    private LocalDateTime fechaHora;
 
     public TurnoDTO() {
     }
 
-    public TurnoDTO(OdontologoDTO odontologo, PacienteDTO paciente, String fechaHora) {
+    public TurnoDTO(OdontologoDTO odontologo, PacienteDTO paciente, LocalDateTime fechaHora) {
         this.odontologo = odontologo;
         this.paciente = paciente;
         this.fechaHora = fechaHora;
@@ -34,7 +38,7 @@ public class TurnoDTO {
         this.paciente = paciente;
     }
 
-    public String getFechaHora() {
+    public LocalDateTime getFechaHora() {
         return fechaHora;
     }
 
