@@ -11,8 +11,7 @@ public class Domicilio {
     /* Indicamos que el atributo id será la Id en la base de datos. Generamos su número automática y secuencialmente
     * a través de su propio SequenceGenerator.*/
     @Id
-    @SequenceGenerator(name="domicilio_generator", sequenceName = "domicilio_generator")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "domicilio_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /* Según las especificaciones, cada domicilio consta de calle, número, localidad y provincia. */

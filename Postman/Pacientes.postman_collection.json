@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "ddd4ddbf-bd94-4a6d-9186-054787a5685f",
+		"name": "Pacientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18542893"
+	},
+	"item": [
+		{
+			"name": "Crear paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\": \"Pérez\",\r\n    \"email\": \"montiverolp@yahoo.com\",\r\n    \"dni\": \"30707545\",\r\n    \"fechaIngreso\": \"2020-02-04\",\r\n    \"domicilio\": {\r\n        \"calle\": \"Corrientes\",\r\n        \"numero\": \"348\",\r\n        \"localidad\": \"CABA\",\r\n        \"provincia\": \"CABA\"\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pacientes/agregar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientes",
+						"agregar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar paciente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\": \"Pérez\",\r\n    \"email\": \"perezlp@yahoo.com\",\r\n    \"dni\": \"30707343\",\r\n    \"fechaIngreso\": \"2020-02-04\",\r\n    \"domicilio\": {\r\n        \"id\": 1,\r\n        \"calle\": \"Corrientes\",\r\n        \"numero\": \"348\",\r\n        \"localidad\": \"CABA\",\r\n        \"provincia\": \"CABA\"\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pacientes/actualizar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientes",
+						"actualizar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paciente por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pacientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar pacientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pacientes/todos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientes",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar paciente por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pacientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pacientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

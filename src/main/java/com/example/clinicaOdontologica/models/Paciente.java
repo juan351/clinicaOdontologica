@@ -17,8 +17,7 @@ public class Paciente {
     /* Indicamos que el atributo id será la Id en la base de datos. Generamos su número automática y secuencialmente
      * a través de su propio SequenceGenerator.*/
     @Id
-            @SequenceGenerator(name="paciente_generator", sequenceName = "paciente_generator")
-            @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /* Un paciente tiene apellido, nombre, email, dni y una fecha de ingreso. */
